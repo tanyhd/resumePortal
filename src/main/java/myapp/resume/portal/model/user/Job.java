@@ -26,8 +26,6 @@ public class Job {
     private LocalDate startDate;
     private LocalDate endDate;
     private boolean isCurrentJob;
-    @Column(length = 512)
-    private String roleDescription;
     @ElementCollection(targetClass = String.class)
     private List<String> responsibilities;
 

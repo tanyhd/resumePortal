@@ -52,11 +52,15 @@ public class HomeController {
                                 .startDate(LocalDate.of(2021, 3, 1))
                                 .endDate(LocalDate.of(2023, 5,1))
                                 .isCurrentJob(true)
-                                .roleDescription("Role description goes here ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.")
                                 .responsibilities(List.of(
-                                        "Lorem ipsum dolor sit amet, consectetuer.",
-                                        "Aenean commodo ligula eget dolor.",
-                                        "Etiam ultricies nisi vel augue."
+                                        "Participating in the software development lifecycle, including requirements gathering, design, development, testing, and maintenance",
+                                        "Writing, testing, and maintaining high-quality, efficient, and reusable code. Debugging and fixing software defects",
+                                        "Collaborating with cross-functional teams to identify, prioritize, and deliver software solutions",
+                                        "Implementing software design patterns, algorithms, and data structures",
+                                        "Following best practices for software development and documentation",
+                                        "Participating in code reviews and contributing to continuous improvement of the software development process",
+                                        "Assisting in the planning and estimation of software development projects",
+                                        "Providing technical support for software applications, as required"
                                 ))
                                 .build(),
                         Job.builder()
@@ -65,11 +69,17 @@ public class HomeController {
                                 .startDate(LocalDate.of(2011, 7,1))
                                 .endDate(LocalDate.of(2021, 12, 1))
                                 .isCurrentJob(false)
-                                .roleDescription("Role description goes here ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.")
                                 .responsibilities(List.of(
-                                        "Lorem ipsum dolor sit amet, consectetuer.",
-                                        "Aenean commodo ligula eget dolor.",
-                                        "Etiam ultricies nisi vel augue."
+                                        "Designing, developing, and testing mechanical systems, components, and products",
+                                        "Analyzing and resolving mechanical design problems, using computer-aided design tools and mathematical models",
+                                        "Creating and maintaining detailed design documentation, including specifications, drawings, and schematics",
+                                        "Collaborating with cross-functional teams, including manufacturing, quality, and suppliers, to ensure product designs meet requirements",
+                                        "Participating in the design review process, including presentations, evaluations, and risk assessments",
+                                        "Providing technical support for the manufacturing, assembly, and testing of mechanical products",
+                                        "Conducting feasibility studies, cost estimates, and trade studies for new product designs",
+                                        "Participating in the continuous improvement of mechanical design processes and standards",
+                                        "Supporting the development of product test plans, including design, execution, and analysis",
+                                        "Conducting failure analysis, root cause investigations, and risk assessments."
                                 ))
                                 .build()
                 ))

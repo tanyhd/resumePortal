@@ -89,7 +89,6 @@
                     <span th:text="${job.isCurrentJob}? 'Present' : ${job.getFormattedEndDate}">Present</span>
                 </p>
                 <hr>
-                <p th:text="${job.roleDescription}">Job description</p>
                 <ul>
                     <li th:each="responsibility : ${job.responsibilities}" th:text="${responsibility}">Inspired and won highest peasant death competition among servants</li>
                 </ul>
@@ -106,12 +105,6 @@
                     <li>Provided untimely deaths to all who opposed</li>
                 </ul>
             </dd>
-            
-            <dd class="clear"></dd>
-            
-            <dt>References</dt>
-            <dd>Available on request</dd>
-            
             <dd class="clear"></dd>
         </dl>
         
