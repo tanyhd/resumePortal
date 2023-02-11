@@ -20,6 +20,7 @@ public class UserProfile {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private int theme;
+    @Column(length = 512)
     private String summary;
     private String firstName;
     private String lastName;

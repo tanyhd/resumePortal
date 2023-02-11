@@ -36,11 +36,10 @@ public class HomeController {
     public String home(@PathVariable String userEmail) {
         Optional<User> userOptional = userRepository.findByEmail(userEmail);
         User user1 = userOptional.get();
-
         UserProfile userProfile1 = UserProfile.builder()
                 .email("darren243@hotmail.com")
                 .phoneNumber("+65 96532160")
-                .summary("my summary for darren243@hotmail.com")
+                .summary("Junior Software Engineer experienced in software development, testing, and maintenance. Proficient in Java, Python, and C++. Knowledgeable in Agile methodologies and able to work in fast-paced teams. Strong analytical and problem-solving skills with a focus on delivering high-quality code. Seeking to use my technical skills to make a positive impact in a challenging software engineering role.")
                 .theme(1)
                 .firstName("Darren")
                 .lastName("Tan")
@@ -52,12 +51,26 @@ public class HomeController {
                                 .designation("Software Engineer")
                                 .startDate(LocalDate.of(2021, 3, 1))
                                 .endDate(LocalDate.of(2023, 5,1))
+                                .isCurrentJob(true)
+                                .roleDescription("Role description goes here ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.")
+                                .responsibilities(List.of(
+                                        "Lorem ipsum dolor sit amet, consectetuer.",
+                                        "Aenean commodo ligula eget dolor.",
+                                        "Etiam ultricies nisi vel augue."
+                                ))
                                 .build(),
                         Job.builder()
                                 .company("STK")
                                 .designation("Principle Engineer")
                                 .startDate(LocalDate.of(2011, 7,1))
                                 .endDate(LocalDate.of(2021, 12, 1))
+                                .isCurrentJob(false)
+                                .roleDescription("Role description goes here ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.")
+                                .responsibilities(List.of(
+                                        "Lorem ipsum dolor sit amet, consectetuer.",
+                                        "Aenean commodo ligula eget dolor.",
+                                        "Etiam ultricies nisi vel augue."
+                                ))
                                 .build()
                 ))
                 .build();

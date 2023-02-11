@@ -7,6 +7,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.List;
 
 @Data
 @Builder
@@ -23,6 +25,11 @@ public class Job {
     private String designation;
     private LocalDate startDate;
     private LocalDate endDate;
+    private boolean isCurrentJob;
+    @Column(length = 512)
+    private String roleDescription;
+    @ElementCollection(targetClass = String.class)
+    private List<String> responsibilities;
 
     @Override
     public String toString() {
@@ -33,5 +40,13 @@ public class Job {
                 ", startDate=" + startDate +
                 ", endDate=" + endDate +
                 '}';
+    }
+
+    public String getFormattedStartDate() {
+        return startDate.format(DateTimeFormatter.ofPattern("MMM yyyy"));
+    }
+
+    public String getFormattedEndDate() {
+        return endDate.format(DateTimeFormatter.ofPattern("MMM yyyy"));
     }
 }
