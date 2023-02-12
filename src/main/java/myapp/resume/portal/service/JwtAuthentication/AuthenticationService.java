@@ -22,11 +22,9 @@ public class AuthenticationService {
     private final AuthenticationManager authenticationManager;
 
     public AuthenticationResponse register(RegisterRequest request) {
-        String uniqueUserId = passwordEncoder.encode(request.getFirstname() + request.getLastname() + request.getEmail());
+        String uniqueUserId = passwordEncoder.encode(request.getEmail());
         String uniqueUserIdFormatted = uniqueUserId.replaceAll("[^A-Za-z0-9]","");
         var user = User.builder()
-                .firstname(request.getFirstname())
-                .lastname(request.getLastname())
                 .email(request.getEmail())
                 .password(passwordEncoder.encode(request.getPassword()))
                 .role(Role.USER)

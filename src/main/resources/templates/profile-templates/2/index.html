@@ -138,7 +138,6 @@
 						<div class="yui-u first">
 							<h2>Projects</h2>
 						</div><!--// .yui-u -->
-
 						<div class="yui-u">
 							<div th:each="job, iterStat : ${userProfile.jobs}" th:if="${!iterStat.last}">
 								<div class="job">
@@ -146,7 +145,6 @@
 									<h4>
 										<span th:text="${job.getFormattedStartDate}">List of project tech used</span>
 									</h4>
-									<hr>
 									<p>Project summary</p>
 								</div>
 							</div>
@@ -166,9 +164,18 @@
 						<div class="yui-u first">
 							<h2>Education</h2>
 						</div>
-						<div class="yui-u">
-							<h2>Indiana University - Bloomington, Indiana</h2>
-							<h3>Dual Major, Economics and English &mdash; <strong>4.0 GPA</strong> </h3>
+						<div class="yui-u" th:each="education : ${userProfile.educations}">
+							<div class="job last">
+								<h2 th:text="${education.university}">Indiana University - Bloomington, Indiana</h2>
+								<h3>
+									<span th:text="${education.qualification}">Dual Major, Economics and English</span> -
+									<strong>4.0 GPA</strong>
+								</h3>
+								<h4>
+									<span th:text="${education.getFormattedStartDate}">2005</span> -
+									<span th:text="${education.getFormattedEndDate}">2007</span>
+								</h4>
+							</div>
 						</div>
 					</div><!--// .yui-gf -->
 
