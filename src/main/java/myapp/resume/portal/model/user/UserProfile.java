@@ -36,6 +36,9 @@ public class UserProfile {
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "education_id")
     private List<Education> educations;
+    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn(name = "skill_id")
+    private Skill skills;
 
 
 }

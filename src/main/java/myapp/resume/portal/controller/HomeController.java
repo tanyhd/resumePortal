@@ -2,18 +2,13 @@ package myapp.resume.portal.controller;
 
 import lombok.RequiredArgsConstructor;
 import myapp.resume.portal.model.JwtAuthentication.AuthenticationRequest;
-import myapp.resume.portal.model.user.Education;
-import myapp.resume.portal.model.user.Job;
-import myapp.resume.portal.model.user.User;
-import myapp.resume.portal.model.user.UserProfile;
+import myapp.resume.portal.model.user.*;
 import myapp.resume.portal.repository.UserProfileRepository;
 import myapp.resume.portal.repository.UserRepository;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -86,12 +81,27 @@ public class HomeController {
                 ))
                 .educations(List.of(
                         Education.builder()
-                                .qualification("BSc. Honours Computer Science With Software Engineering Specialization")
+                                .qualification("BSc. Honours Computer Science")
                                 .university("Nanyang Technological University (NTU)")
                                 .startDate(LocalDate.of(2008, 6, 1))
                                 .endDate(LocalDate.of(2011, 7,1))
                                 .build()
                 ))
+                .skills(
+                        Skill.builder()
+                                .languages(List.of(
+                                        "Java",
+                                        "C#",
+                                        "Javascript",
+                                        "Typescript",
+                                        "SQL"
+                                ))
+                                .technologys(List.of(
+                                        "Angular",
+                                        "Spring Boot"
+                                ))
+                                .build()
+                )
                 .build();
         userProfileRepository.save(userProfile1);
 

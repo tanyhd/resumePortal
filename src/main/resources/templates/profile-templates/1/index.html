@@ -75,11 +75,15 @@
             
             <dt>Skills</dt>
             <dd>
-                <h2>Office skills</h2>
-                <p>Office and records management, database administration, event organization, customer support, travel coordination</p>
+                <h2>Language</h2>
+                <ul>
+                    <li th:each="language : ${userProfile.skills.languages}" th:text="${language}">Java</li>
+                </ul>
                 
-                <h2>Computer skills</h2>
-                <p>Microsoft productivity software (Word, Excel, etc), Adobe Creative Suite, Windows</p>
+                <h2>Technology</h2>
+                <ul>
+                    <li th:each="technology : ${userProfile.skills.technologys}" th:text="${technology}" >Spring Boot</li>
+                </ul>
             </dd>
             
             <dd class="clear"></dd>
