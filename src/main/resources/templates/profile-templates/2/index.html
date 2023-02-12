@@ -112,22 +112,22 @@
 							<h2>Projects</h2>
 						</div><!--// .yui-u -->
 						<div class="yui-u">
-							<div th:each="job, iterStat : ${userProfile.jobs}" th:if="${!iterStat.last}">
+							<div th:each="project, iterStat : ${userProfile.projects}" th:if="${!iterStat.last}">
 								<div class="job">
-									<h2 th:text="${job.company}">Project Title</h2>
+									<h2 th:text="${project.title}">Project Title</h2>
 									<h4>
-										<span th:text="${job.getFormattedStartDate}">List of project tech used</span>
+										<span th:text="${project.technologyUsed}">List of project tech used</span>
 									</h4>
-									<p>Project summary</p>
+									<p th:text="${project.description}">Project summary</p>
 								</div>
 							</div>
-							<div th:if="${userProfile.jobs}" th:with="lastJob=${userProfile.jobs[userProfile.jobs.size()-1]}">
+							<div th:if="${userProfile.projects}" th:with="lastProject=${userProfile.projects[userProfile.projects.size()-1]}">
 								<div class="job last">
-									<h2 th:text="${lastJob.company}">Project Title</h2>
+									<h2 th:text="${lastProject.title}">Project Title</h2>
 									<h4>
-										<span th:text="${lastJob.getFormattedStartDate}">List of project tech used</span>
+										<span th:text="${lastProject.technologyUsed}">List of project tech used</span>
 									</h4>
-									<p>Project summary</p>
+									<p th:text="${lastProject.description}">Project summary</p>
 								</div>
 							</div>
 						</div><!--// .yui-u -->

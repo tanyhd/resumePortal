@@ -102,125 +102,23 @@ public class HomeController {
                                 ))
                                 .build()
                 )
+                .projects(List.of(
+                        Project.builder()
+                                .title("Image Repository")
+                                .description("A full-stack image repository, where users can store their files. Created a GCP cloud function to implement CP-ABE encryption and used it to ensure files are secure at rest.")
+                                .linkToProject("https://github.com")
+                                .technologyUsed("Java, PHP, React, TypeScript, Maven, GCP, MySQL")
+                                .build(),
+                        Project.builder()
+                                .title("Biometric Dynamic Keystroke Spoofer")
+                                .description("A program that authenticates users based on their typing patterns. And a spoofer that uses the genetic algorithm to mimic the user's typing pattern.")
+                                .linkToProject("https://github.com")
+                                .technologyUsed("Java, SQL, Spring Boot")
+                                .build()
+                ))
                 .build();
         userProfileRepository.save(userProfile1);
 
-        Optional<User> userOptional2 = userRepository.findByEmail("elena89@gmail.com");
-        User user2 = userOptional2.get();
-
-        UserProfile userProfile2 = UserProfile.builder()
-                .email("elena89@gmail.com")
-                .phoneNumber("+1 (555) 555-5555")
-                .summary("Experienced software developer with a strong background in developing high-quality software solutions using Java and Python. Proficient in Agile methodologies and familiar with various software development tools and technologies. Strong problem-solving skills, attention to detail, and the ability to work in a fast-paced environment. Seeking a challenging software development role where I can utilize my technical and interpersonal skills to deliver innovative solutions.")
-                .theme(2)
-                .firstName("Elena")
-                .lastName("Rodriguez")
-                .designation("Software Developer")
-                .uniqueUserId(user2.getUniqueUserId())
-                .jobs(List.of(
-                        Job.builder()
-                                .company("Google")
-                                .designation("Software Engineer")
-                                .startDate(LocalDate.of(2019, 9, 1))
-                                .endDate(LocalDate.of(2022, 12, 31))
-                                .isCurrentJob(false)
-                                .responsibilities(List.of(
-                                        "Developing high-quality software solutions using Java and Python",
-                                        "Participating in the software development lifecycle, including requirements gathering, design, development, testing, and maintenance",
-                                        "Debugging and fixing software defects",
-                                        "Collaborating with cross-functional teams to deliver software solutions",
-                                        "Implementing software design patterns and algorithms",
-                                        "Maintaining software documentation and following best practices for software development",
-                                        "Providing technical support for software applications, as required"
-                                ))
-                                .build(),
-                        Job.builder()
-                                .company("Microsoft")
-                                .designation("Software Developer")
-                                .startDate(LocalDate.of(2017, 5, 1))
-                                .endDate(LocalDate.of(2019, 9, 1))
-                                .isCurrentJob(false)
-                                .responsibilities(List.of(
-                                        "Developing software solutions using Java and Python",
-                                        "Participating in the software development lifecycle, including requirements gathering, design, development, testing, and maintenance",
-                                        "Debugging and fixing software defects",
-                                        "Collaborating with cross-functional teams to deliver software solutions",
-                                        "Implementing software design patterns and algorithms",
-                                        "Maintaining software documentation and following best practices for software development",
-                                        "Providing technical support for software applications, as required"
-                                ))
-                                .build()
-                ))
-                .educations(List.of(
-                        Education.builder()
-                                .qualification("BS in Computer Science")
-                                .university("Stanford University")
-                                .startDate(LocalDate.of(2013, 9, 1))
-                                .endDate(LocalDate.of(2017, 5, 1))
-                                .build()
-                ))
-                .build();
-        userProfileRepository.save(userProfile2);
-
-        Optional<User> userOptional3 = userRepository.findByEmail("tiffanyjones@gmail.com");
-        User user3 = userOptional3.get();
-
-        UserProfile userProfile3 = UserProfile.builder()
-                .email("tiffanyjones@gmail.com")
-                .phoneNumber("+1 (415) 555-5555")
-                .summary("Experienced product manager with a background in software development. Proficient in project management, Agile methodologies, and data analysis. Strong communication and interpersonal skills, able to effectively manage cross-functional teams and drive product development from ideation to launch. Seeking to leverage my technical and leadership skills in a challenging product management role.")
-                .theme(2)
-                .firstName("Tiffany")
-                .lastName("Jones")
-                .designation("Product Manager")
-                .uniqueUserId(user3.getUniqueUserId())
-                .jobs(List.of(
-                        Job.builder()
-                                .company("Google")
-                                .designation("Product Manager")
-                                .startDate(LocalDate.of(2019, 4, 1))
-                                .endDate(LocalDate.of(2023, 2, 1))
-                                .isCurrentJob(true)
-                                .responsibilities(List.of(
-                                        "Defining and communicating the product vision and strategy to cross-functional teams",
-                                        "Managing the entire product development life cycle, from ideation to launch",
-                                        "Collecting and analyzing data to inform product decisions and make data-driven recommendations",
-                                        "Working with designers, engineers, and stakeholders to develop and launch new products",
-                                        "Driving product development from concept to launch, including defining and prioritizing features, creating product specifications, and conducting user research and testing",
-                                        "Collaborating with cross-functional teams, including engineering, design, marketing, and customer support, to drive product development and launch",
-                                        "Managing the product backlog and ensuring the team is aligned on priorities and goals",
-                                        "Communicating product plans, benefits, and results to stakeholders, including senior leadership and customers"
-                                ))
-                                .build(),
-                        Job.builder()
-                                .company("Amazon")
-                                .designation("Senior Product Manager")
-                                .startDate(LocalDate.of(2015, 7, 1))
-                                .endDate(LocalDate.of(2019, 4, 1))
-                                .isCurrentJob(false)
-                                .responsibilities(List.of(
-                                        "Developed and executed the product strategy for Amazon's e-commerce platform",
-                                        "Managed a cross-functional team of designers, engineers, and data scientists to launch new products and features",
-                                        "Conducted market and competitive research to inform product decisions",
-                                        "Analyzed data to optimize product performance and drive customer engagement",
-                                        "Managed the product roadmap, backlog, and budget, and communicated plans to stakeholders",
-                                        "Partnered with marketing and customer support teams to drive product adoption and customer satisfaction",
-                                        "Conducted user research and testing to validate product concepts and inform design decisions",
-                                        "Contributed to the development of company-wide product management processes and best practices"
-                                ))
-                                .build()
-                ))
-                .educations(List.of(
-                        Education.builder()
-                                .qualification("Bachelor of Science in Computer Science")
-                                .university("University of California, Berkeley")
-                                .startDate(LocalDate.of(2011, 9, 1))
-                                .endDate(LocalDate.of(2013, 7, 9))
-                                .build()
-                ))
-                .build();
-
-        userProfileRepository.save(userProfile3);
         return "profile";
     }
 

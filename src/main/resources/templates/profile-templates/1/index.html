@@ -104,13 +104,11 @@
             <dd class="clear"></dd>
             
             <dt>Projects</dt>
-            <dd>
-                <h2>Doomsday Cult</h2>
-                <ul>
-                    <li>Inspired and won highest peasant death competition among servants</li>
-                    <li>Helped coordinate managers to grow cult following</li>
-                    <li>Provided untimely deaths to all who opposed</li>
-                </ul>
+            <dd th:each="project : ${userProfile.projects}">
+                <h2 th:text="${project.title}">Doomsday Cult</h2>
+                <p th:text="${project.technologyUsed}">Technology used</p>
+                <hr>
+                <p th:text="${project.description}">Description of the project</p>
             </dd>
             <dd class="clear"></dd>
         </dl>
