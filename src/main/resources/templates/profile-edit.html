@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Profile</title>
+</head>
+<body>
+<h1 id="profile-header">Profile</h1>
+<script>
+    const token = localStorage.getItem('token');
+    const email = localStorage.getItem('email'); // Replace with the user's email
+    fetch(`/user/edit?email=${email}`, {
+        headers: {
+            'Authorization': `Bearer ${token}`
+        }
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        return response.json();
+    })
+    .then(userProfile => {
+        const profileHeader = document.getElementById('profile-header');
+        profileHeader.textContent = `${userProfile.email}'s Profile`;
+    })
+    .catch(error => {
+        console.error(error);
+        window.location.href = '/home/login-error'; // Replace with the URL of your error page
+    });
+</script>
+</body>
+</html>

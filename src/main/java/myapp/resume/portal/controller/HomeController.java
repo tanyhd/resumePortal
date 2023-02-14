@@ -9,9 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-
-import java.time.LocalDate;
-import java.util.List;
+import org.springframework.web.bind.annotation.RequestParam;
 import java.util.Optional;
 
 @Controller
@@ -28,6 +26,23 @@ public class HomeController {
         return "login";
     }
 
+    @GetMapping("/home/login-error")
+    public String loginError() {
+        return "login-error";
+    }
+
+    @GetMapping("/home/register")
+    public String register() {
+        return "register";
+    }
+
+    @GetMapping("/home/edit")
+    public String homeEdit() {
+        return "profile-edit";
+    }
+
+
+    /*
     @GetMapping("/home/{userEmail}")
     public String home(@PathVariable String userEmail) {
         Optional<User> userOptional = userRepository.findByEmail("darren243@hotmail.com");
@@ -121,6 +136,7 @@ public class HomeController {
 
         return "profile";
     }
+     */
 
     @GetMapping("/view/{userId}")
     public String view(@PathVariable String userId, Model model) {

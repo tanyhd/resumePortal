@@ -1,0 +1,46 @@
+
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login Error</title>
+  <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+        }
+        .container {
+            max-width: 500px;
+            margin: auto;
+            padding: 20px;
+            background-color: white;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px #bbb;
+            text-align: center;
+        }
+        h1 {
+            margin-top: 0;
+        }
+        p {
+            font-size: 1.2em;
+        }
+        a {
+            color: blue;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+  <h1>Login Error</h1>
+  <p>Either your login ID or password is incorrect, or you have not registered yet. Please try again or <a href="/home/register">register a new account</a>.</p>
+  <button onclick="goBack()">Go Back</button>
+</div>
+<script>
+     function goBack() {
+        window.location.href = '/home/login';
+    }
+</script>
+</body>
+</html>

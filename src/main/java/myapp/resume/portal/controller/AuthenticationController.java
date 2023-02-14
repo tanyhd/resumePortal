@@ -6,6 +6,8 @@ import myapp.resume.portal.model.JwtAuthentication.AuthenticationRequest;
 import myapp.resume.portal.model.JwtAuthentication.AuthenticationResponse;
 import myapp.resume.portal.model.JwtAuthentication.RegisterRequest;
 import myapp.resume.portal.service.JwtAuthentication.AuthenticationService;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -22,7 +24,10 @@ public class AuthenticationController {
     @PostMapping("/register")
     public ResponseEntity<AuthenticationResponse> register(
             @RequestBody RegisterRequest request) {
-        return ResponseEntity.ok(service.register(request));
+        AuthenticationResponse response = service.register(request);
+        return ResponseEntity.status(HttpStatus.CREATED)
+                .header(HttpHeaders.LOCATION, "/home/login")
+                .body(response);
     }
 
     @PostMapping("/authenticate")

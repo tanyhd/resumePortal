@@ -9,7 +9,6 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
   $(document).ready(function() {
-  console.log("test test test")
   $("#login-form").submit(function(event) {
     event.preventDefault();
     var email = $("#email").val();
@@ -28,6 +27,11 @@
 
         // Save the response (token)
         localStorage.setItem("token", response.token);
+        localStorage.setItem("email", email);
+
+        // Redirect to profile-edit page
+        window.location.replace("/home/edit?email=" + email);
+
       },
       error: function(error) {
         // handle the error
