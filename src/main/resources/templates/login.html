@@ -1,57 +1,69 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th = "http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Login</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<h1 class="text-center mt-4">Login</h1>
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-6 col-lg-5">
+      <form th:action="@{/api/v1/auth/authenticate}" th:object="${authenticationRequest}" method="post" id="login-form" class="p-3 border rounded">
+        <input type="hidden" name="_method" value="post" />
+        <div class="form-group">
+          <label for="email">Email:</label>
+          <input type="email" id="email" name="email" th:field="*{email}" class="form-control" />
+        </div>
+        <div class="form-group">
+          <label for="password">Password:</label>
+          <input type="password" id="password" name="password" th:field="*{password}" class="form-control" />
+        </div>
+        <div class="form-group text-center">
+          <button type="submit" class="btn btn-primary w-100 mt-3">Submit</button>
+          <div class="mt-3">
+            Don't have an account? <a href="/home/register">Register now!</a>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
 <script>
-  $(document).ready(function() {
-  $("#login-form").submit(function(event) {
-    event.preventDefault();
-    var email = $("#email").val();
-    var password = $("#password").val();
-    var data = {
-      "email": email,
-      "password": password
-    };
-    $.ajax({
-      type: "POST",
-      url: "/api/v1/auth/authenticate",
-      contentType: "application/json",
-      data: JSON.stringify(data),
-      success: function(response) {
-        // handle the response from the server
+    $(document).ready(function() {
+      $("#login-form").submit(function(event) {
+        event.preventDefault();
+        var email = $("#email").val();
+        var password = $("#password").val();
+        var data = {
+          "email": email,
+          "password": password
+        };
+        $.ajax({
+          type: "POST",
+          url: "/api/v1/auth/authenticate",
+          contentType: "application/json",
+          data: JSON.stringify(data),
+          success: function(response) {
+            // handle the response from the server
 
-        // Save the response (token)
-        localStorage.setItem("token", response.token);
-        localStorage.setItem("email", email);
+            // Save the response (token)
+            localStorage.setItem("token", response.token);
+            localStorage.setItem("email", email);
 
-        // Redirect to profile-edit page
-        window.location.replace("/home/edit?email=" + email);
+            // Redirect to profile-edit page
+            window.location.replace("/home/edit?email=" + email);
 
-      },
-      error: function(error) {
-        // handle the error
-      }
+          },
+          error: function(error) {
+            // handle the error
+          }
+        });
+      });
     });
-  });
-});
- </script>
-<h1>Login</h1>
-<form th:action="@{/api/v1/auth/authenticate}"  th:object="${authenticationRequest}" method="post" id="login-form">
-  <input type="hidden" name="_method" value="post" />
-  <div>
-    <label for="email">Email:</label>
-    <input type="email" id="email" name="email" th:field="*{email}" />
-  </div>
-  <div>
-    <label for="password">Password:</label>
-    <input type="password" id="password" name="password" th:field="*{password}" />
-  </div>
-  <button type="submit">Submit</button>
-</form>
+  </script>
 </body>
 </html>

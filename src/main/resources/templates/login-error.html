@@ -1,10 +1,11 @@
-
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Login Error</title>
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
   <style>
         body {
             font-family: Arial, sans-serif;
@@ -32,10 +33,10 @@
     </style>
 </head>
 <body>
-<div class="container">
-  <h1>Login Error</h1>
-  <p>Either your login ID or password is incorrect, or you have not registered yet. Please try again or <a href="/home/register">register a new account</a>.</p>
-  <button onclick="goBack()">Go Back</button>
+<div class="container my-5">
+  <h1 class="mb-4">Login Error</h1>
+  <p class="mb-4">Either your login ID or password is incorrect, or you have not registered yet. Please try again or <a href="/home/register">register a new account</a>.</p>
+  <button class="btn btn-primary" onclick="goBack()">Go Back</button>
 </div>
 <script>
      function goBack() {
