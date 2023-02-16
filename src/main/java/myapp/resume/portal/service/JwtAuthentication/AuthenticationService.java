@@ -4,15 +4,15 @@ import lombok.RequiredArgsConstructor;
 import myapp.resume.portal.model.JwtAuthentication.AuthenticationRequest;
 import myapp.resume.portal.model.JwtAuthentication.AuthenticationResponse;
 import myapp.resume.portal.model.JwtAuthentication.RegisterRequest;
-import myapp.resume.portal.model.user.Role;
-import myapp.resume.portal.model.user.User;
-import myapp.resume.portal.model.user.UserProfile;
+import myapp.resume.portal.model.user.*;
 import myapp.resume.portal.repository.UserProfileRepository;
 import myapp.resume.portal.repository.UserRepository;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -37,6 +37,11 @@ public class AuthenticationService {
         var userProfile = UserProfile.builder()
                 .email(request.getEmail())
                 .uniqueUserId(uniqueUserIdFormatted)
+                .theme(1)
+                .skills(Skill.builder()
+                        .languages(List.of("English"))
+                        .technologys(List.of("Java"))
+                        .build())
                 .build();
         userProfileRepository.save(userProfile);
         var jwtToken = jwtService.generateToken(user);

@@ -29,7 +29,8 @@ public class UserProfile {
     @Column(unique = true)
     private String email;
     private String uniqueUserId;
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+
+    @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "job_id")
     private List<Job> jobs;
 

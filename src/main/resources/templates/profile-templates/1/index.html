@@ -31,6 +31,7 @@
 
 <body>
 
+
     <div id="page-wrap">
     
         <img src="../profile-templates/1/images/cthulu.png" alt="Photo of Cthulu" id="pic" />
@@ -116,7 +117,21 @@
         <div class="clear"></div>
     
     </div>
+    <div>
+        <button id="back-button">Back</button>
+    </div>
+    <script type="text/javascript">
+        // Retrieve token and email from storage
+        const token = localStorage.getItem("token");
+        const email = localStorage.getItem("email");
 
+        // Set up event listener for back button
+        const backButton = document.getElementById("back-button");
+        backButton.addEventListener("click", function() {
+        // Redirect to same URL with email parameter
+        window.location.href = "/home/edit?email=" + email;
+        });
+    </script>
 </body>
 
 </html>

@@ -6,28 +6,48 @@
 </head>
 <body>
 <h1 id="profile-header">Profile</h1>
-<script>
-    const token = localStorage.getItem('token');
-    const email = localStorage.getItem('email'); // Replace with the user's email
-    fetch(`/user/edit?email=${email}`, {
-        headers: {
-            'Authorization': `Bearer ${token}`
-        }
-    })
-    .then(response => {
-        if (!response.ok) {
-            throw new Error('Network response was not ok');
-        }
-        return response.json();
-    })
-    .then(userProfile => {
-        const profileHeader = document.getElementById('profile-header');
-        profileHeader.textContent = `${userProfile.email}'s Profile`;
-    })
-    .catch(error => {
-        console.error(error);
-        window.location.href = '/home/login-error'; // Replace with the URL of your error page
-    });
-</script>
+<form id="profile-form">
+    <div>
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email">
+    </div>
+    <div>
+        <label for="firstName">First Name:</label>
+        <input type="text" id="firstName" name="firstName">
+    </div>
+    <div>
+        <label for="lastName">Last Name:</label>
+        <input type="text" id="lastName" name="lastName">
+    </div>
+    <div>
+        <label for="theme">Theme:</label>
+        <input type="text" id="theme" name="theme">
+    </div>
+    <div>
+        <label>Jobs:</label>
+        <div id="jobs-fields"></div>
+        <button type="button" id="add-job">Add Job</button>
+    </div>
+    <div>
+        <label>Educations:</label>
+        <div id="educations-fields"></div>
+        <button type="button" id="add-education">Add Education</button>
+    </div>
+    <div>
+        <label>Skills:</label>
+        <div id="skills-fields"></div>
+        <button type="button" id="add-skill">Add Skill</button>
+    </div>
+    <div>
+        <label>Projects:</label>
+        <div id="projects-fields"></div>
+        <button type="button" id="add-project">Add Project</button>
+    </div>
+    <!-- Add more fields here as needed -->
+    <div>
+        <button type="submit">Save</button>
+    </div>
+</form>
+<script src="../profile-templates/profile-edit.js"></script>
 </body>
 </html>
