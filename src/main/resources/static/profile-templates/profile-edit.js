@@ -14,6 +14,7 @@ fetch(`/user/edit?email=${email}`, {
   .then((userProfile) => {
     const profileHeader = document.getElementById("profile-header");
     profileHeader.textContent = `${userProfile.email}'s Profile`;
+    let jobCount = 1; // Keep track of the number of job input sets
 
     // Populate form fields with userProfile values
     const form = document.getElementById("profile-form");
@@ -28,8 +29,8 @@ fetch(`/user/edit?email=${email}`, {
       for (let i = 0; i < userProfile.jobs.length; i++) {
         const job = userProfile.jobs[i];
 
-        // Create a new set of job parameter input elements
-        const jobSet = document.createElement("div");
+        // Create a new row for the job
+        const jobRow = document.createElement("tr");
 
         // Add input field for company parameter
         const companyLabel = document.createElement("label");
@@ -39,9 +40,10 @@ fetch(`/user/edit?email=${email}`, {
         companyInput.setAttribute("type", "text");
         companyInput.setAttribute("id", `job-${jobCount}-company`);
         companyInput.setAttribute("name", `job-${jobCount}-company`);
+        const companyCell = document.createElement("td");
         companyInput.value = job.company;
-        jobSet.appendChild(companyLabel);
-        jobSet.appendChild(companyInput);
+        companyCell.appendChild(companyInput);
+        jobRow.appendChild(companyCell);
 
         // Add input field for designation parameter
         const designationLabel = document.createElement("label");
@@ -51,9 +53,10 @@ fetch(`/user/edit?email=${email}`, {
         designationInput.setAttribute("type", "text");
         designationInput.setAttribute("id", `job-${jobCount}-designation`);
         designationInput.setAttribute("name", `job-${jobCount}-designation`);
+        const designationCell = document.createElement("td");
         designationInput.value = job.designation;
-        jobSet.appendChild(designationLabel);
-        jobSet.appendChild(designationInput);
+        designationCell.appendChild(designationInput);
+        jobRow.appendChild(designationCell);
 
         // Add input field for designation parameter
         const startDateLabel = document.createElement("label");
@@ -63,9 +66,10 @@ fetch(`/user/edit?email=${email}`, {
         startDateInput.setAttribute("type", "date");
         startDateInput.setAttribute("id", `job-${jobCount}-startDate`);
         startDateInput.setAttribute("name", `job-${jobCount}-startDate`);
-        startDateInput.value = job.startDate;
-        jobSet.appendChild(startDateLabel);
-        jobSet.appendChild(startDateInput);
+        const startDateCell = document.createElement("td");
+        startDateInput.value =  job.startDate;
+        startDateCell.appendChild(startDateInput);
+        jobRow.appendChild(startDateCell);
 
         // Add input field for designation parameter
         const endDateLabel = document.createElement("label");
@@ -75,12 +79,13 @@ fetch(`/user/edit?email=${email}`, {
         endDateInput.setAttribute("type", "date");
         endDateInput.setAttribute("id", `job-${jobCount}-endDate`);
         endDateInput.setAttribute("name", `job-${jobCount}-endDate`);
+        const endDateCell = document.createElement("td");
         endDateInput.value = job.endDate;
-        jobSet.appendChild(endDateLabel);
-        jobSet.appendChild(endDateInput);
+        endDateCell.appendChild(endDateInput);
+        jobRow.appendChild(endDateCell);
 
         // Append job parameter input elements to the job fields div
-        jobsFields.appendChild(jobSet);
+        jobsFields.appendChild(jobRow);
 
         jobCount++;
       }
@@ -99,87 +104,83 @@ let responsibilityCountArray = [0];
 
 addJobButton.addEventListener("click", (event) => {
     event.preventDefault();
-  // Create a new set of job parameter input elements
-  const jobSet = document.createElement("div");
 
-  // Add input field for company parameter
-  const companyLabel = document.createElement("label");
-  companyLabel.setAttribute("for", `job-${jobCount}-company`);
-  companyLabel.textContent = "Company:";
-  const companyInput = document.createElement("input");
-  companyInput.setAttribute("type", "text");
-  companyInput.setAttribute("id", `job-${jobCount}-company`);
-  companyInput.setAttribute("name", `job-${jobCount}-company`);
-  jobSet.appendChild(companyLabel);
-  jobSet.appendChild(companyInput);
+    // Create a new row for the job
+    const jobRow = document.createElement("tr");
 
-  // Add input field for designation parameter
-  const designationLabel = document.createElement("label");
-  designationLabel.setAttribute("for", `job-${jobCount}-designation`);
-  designationLabel.textContent = "Designation:";
-  const designationInput = document.createElement("input");
-  designationInput.setAttribute("type", "text");
-  designationInput.setAttribute("id", `job-${jobCount}-designation`);
-  designationInput.setAttribute("name", `job-${jobCount}-designation`);
-  jobSet.appendChild(designationLabel);
-  jobSet.appendChild(designationInput);
+    // Add input field for company parameter
+    const companyInput = document.createElement("input");
+    companyInput.setAttribute("type", "text");
+    companyInput.setAttribute("id", `job-${jobCount}-company`);
+    companyInput.setAttribute("name", `job-${jobCount}-company`);
+    const companyCell = document.createElement("td");
+    companyCell.textContent = "";
+    companyCell.appendChild(companyInput);
+    jobRow.appendChild(companyCell);
 
-  // Add input field for startDate parameter
-  const startDateLabel = document.createElement("label");
-  startDateLabel.setAttribute("for", `job-${jobCount}-startDate`);
-  startDateLabel.textContent = "Start Date:";
-  const startDateInput = document.createElement("input");
-  startDateInput.setAttribute("type", "date");
-  startDateInput.setAttribute("id", `job-${jobCount}-startDate`);
-  startDateInput.setAttribute("name", `job-${jobCount}-startDate`);
-  jobSet.appendChild(startDateLabel);
-  jobSet.appendChild(startDateInput);
+    // Add input field for designation parameter
+    const designationInput = document.createElement("input");
+    designationInput.setAttribute("type", "text");
+    designationInput.setAttribute("id", `job-${jobCount}-designation`);
+    designationInput.setAttribute("name", `job-${jobCount}-designation`);
+    const designationCell = document.createElement("td");
+    designationCell.textContent = "";
+    designationCell.appendChild(designationInput);
+    jobRow.appendChild(designationCell);
 
-  // Add input field for startDate parameter
-  const endDateLabel = document.createElement("label");
-  endDateLabel.setAttribute("for", `job-${jobCount}-endDate`);
-  endDateLabel.textContent = "End Date:";
-  const endDateInput = document.createElement("input");
-  endDateInput.setAttribute("type", "date");
-  endDateInput.setAttribute("id", `job-${jobCount}-endDate`);
-  endDateInput.setAttribute("name", `job-${jobCount}-endDate`);
-  jobSet.appendChild(endDateLabel);
-  jobSet.appendChild(endDateInput);
+    // Add input field for startDate parameter
+    const startDateInput = document.createElement("input");
+    startDateInput.setAttribute("type", "date");
+    startDateInput.setAttribute("id", `job-${jobCount}-startDate`);
+    startDateInput.setAttribute("name", `job-${jobCount}-startDate`);
+    const startDateCell = document.createElement("td");
+    startDateCell.textContent = "";
+    startDateCell.appendChild(startDateInput);
+    jobRow.appendChild(startDateCell);
 
-  // Add input field for responsibilities parameter
-  responsibilityCount = 0;
-  const responsibilitiesLabel = document.createElement("label");
-  responsibilitiesLabel.setAttribute("for", `job-${jobCount}-responsibilities`);
-  responsibilitiesLabel.textContent = "Responsibilities:";
-  const responsibilitiesInput = document.createElement("div");
-  const responsibilitiesList = document.createElement("ul");
-  const addResponsibilityButton = document.createElement("button");
-  addResponsibilityButton.textContent = "+";
-  let resJobCount = jobCount;
+    // Add input field for endDate parameter
+    const endDateInput = document.createElement("input");
+    endDateInput.setAttribute("type", "date");
+    endDateInput.setAttribute("id", `job-${jobCount}-endDate`);
+    endDateInput.setAttribute("name", `job-${jobCount}-endDate`);
+    const endDateCell = document.createElement("td");
+    endDateCell.textContent = "";
+    endDateCell.appendChild(endDateInput);
+    jobRow.appendChild(endDateCell);
 
-  addResponsibilityButton.addEventListener("click", (event) => {
-    event.preventDefault();
-    responsibilityCount++;
-    const newResponsibility = document.createElement("li");
-    const newResponsibilityInput = document.createElement("input");
-    newResponsibilityInput.setAttribute("type", "text");
-    newResponsibilityInput.setAttribute(
-      "name",
-      `job-${resJobCount}-responsibility-${responsibilityCount}`
-    );
-    newResponsibility.appendChild(newResponsibilityInput);
-    responsibilitiesList.appendChild(newResponsibility);
-    responsibilityCountArray[resJobCount] = responsibilityCount;
-  }) 
-  responsibilitiesInput.appendChild(addResponsibilityButton);
-  responsibilitiesInput.appendChild(responsibilitiesList);
-  jobSet.appendChild(responsibilitiesLabel);
-  jobSet.appendChild(responsibilitiesInput);
-  
-  // Append job parameter input elements to the job fields div
-  jobsFields.appendChild(jobSet);
+    // Add input field for responsibilities parameter
+    responsibilityCount = 0;
+    const responsibilitiesInput = document.createElement("div");
+    const responsibilitiesList = document.createElement("ul");
+    const addResponsibilityButton = document.createElement("button");
+    addResponsibilityButton.textContent = "+";
+    let resJobCount = jobCount;
 
-  jobCount++;
+    addResponsibilityButton.addEventListener("click", (event) => {
+        event.preventDefault();
+        responsibilityCount++;
+        const newResponsibility = document.createElement("li");
+        const newResponsibilityInput = document.createElement("input");
+        newResponsibilityInput.setAttribute("type", "text");
+        newResponsibilityInput.setAttribute(
+          "name",
+          `job-${resJobCount}-responsibility-${responsibilityCount}`
+        );
+        newResponsibility.appendChild(newResponsibilityInput);
+        responsibilitiesList.appendChild(newResponsibility);
+        responsibilityCountArray[resJobCount] = responsibilityCount;
+    }) 
+    responsibilitiesInput.appendChild(addResponsibilityButton);
+    responsibilitiesInput.appendChild(responsibilitiesList);
+    const responsibilitiesCell = document.createElement("td");
+    responsibilitiesCell.textContent = "";
+    responsibilitiesCell.appendChild(responsibilitiesInput);
+    jobRow.appendChild(responsibilitiesCell);
+
+    // Append the new job row to the table
+    jobsFields.appendChild(jobRow);
+
+    jobCount++;
 });
 
 const form = document.getElementById("profile-form");
