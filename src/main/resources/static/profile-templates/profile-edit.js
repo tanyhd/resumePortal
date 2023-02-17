@@ -248,6 +248,15 @@ addJobButton.addEventListener("click", (event) => {
   jobCount++;
 });
 
+const removeJobButton = document.getElementById("remove-job");
+removeJobButton.addEventListener("click", function() {
+  const jobsTable = document.getElementById("jobs-fields");
+  if (jobsTable.rows.length > 0) {
+    jobsTable.deleteRow(-1);
+    jobCount--;
+  }
+});
+
 const form = document.getElementById("profile-form");
 form.addEventListener("submit", (event) => {
   event.preventDefault(); // Prevent the default form submission behavior
