@@ -1,5 +1,9 @@
 const token = localStorage.getItem("token");
 const email = localStorage.getItem("email"); // Replace with the user's email
+let jobCount = 1; // Keep track of the number of job input sets
+let responsibilityCount = 0;
+let responsibilityCountArray = [0];
+
 fetch(`/user/edit?email=${email}`, {
   headers: {
     Authorization: `Bearer ${token}`,
@@ -14,7 +18,6 @@ fetch(`/user/edit?email=${email}`, {
   .then((userProfile) => {
     const profileHeader = document.getElementById("profile-header");
     profileHeader.textContent = `${userProfile.email}'s Profile`;
-    let jobCount = 1; // Keep track of the number of job input sets
 
     // Populate form fields with userProfile values
     const form = document.getElementById("profile-form");
@@ -31,6 +34,7 @@ fetch(`/user/edit?email=${email}`, {
 
         // Create a new row for the job
         const jobRow = document.createElement("tr");
+        jobsTable.appendChild(jobRow);
 
         // Add input field for company parameter
         const companyLabel = document.createElement("label");
@@ -84,6 +88,53 @@ fetch(`/user/edit?email=${email}`, {
         endDateCell.appendChild(endDateInput);
         jobRow.appendChild(endDateCell);
 
+        // Add input field for responsibilities parameter
+        let responsibilityCount = 1;
+        let resJobCount = jobCount;
+        const responsibilitiesList = document.createElement("ul");
+
+        for (let j = 0; j < job.responsibilities.length; j++) {
+          const responsibility = job.responsibilities[j];
+          const responsibilityItem = document.createElement("li");
+          const responsibilityInput = document.createElement("input");
+          responsibilityInput.setAttribute("type", "text");
+          responsibilityInput.setAttribute(
+            "name",
+            `job-${resJobCount}-responsibility-${j + 1}`
+          );
+          responsibilityInput.value = responsibility;
+          responsibilityItem.style.listStyle = "none"; // hide bullet point
+          responsibilityItem.appendChild(responsibilityInput);
+          responsibilitiesList.appendChild(responsibilityItem);
+        }
+        responsibilityCountArray.push(job.responsibilities.length);
+        const responsibilitiesCell = document.createElement("td");
+        responsibilitiesCell.textContent = "";
+        responsibilitiesCell.appendChild(responsibilitiesList);
+        jobRow.appendChild(responsibilitiesCell);
+        const addResponsibilityButton = document.createElement("button");
+        addResponsibilityButton.textContent = "+";
+        const addLength = job.responsibilities.length - 1;
+        addResponsibilityButton.addEventListener("click", (event) => {
+          event.preventDefault();
+          responsibilityCount++;
+          const newResponsibility = document.createElement("li");
+          const newResponsibilityInput = document.createElement("input");
+          newResponsibilityInput.setAttribute("type", "text");
+          newResponsibilityInput.setAttribute(
+            "name",
+            `job-${resJobCount}-responsibility-${responsibilityCount + addLength}`
+          );
+          newResponsibility.style.listStyle = "none"; // hide bullet point
+          newResponsibility.appendChild(newResponsibilityInput);
+          responsibilitiesList.appendChild(newResponsibility);
+          responsibilityCountArray[resJobCount] = responsibilityCount + addLength;
+        });
+      
+        const addResponsibilityCell = document.createElement("td");
+        addResponsibilityCell.appendChild(addResponsibilityButton);
+        jobRow.appendChild(addResponsibilityCell);
+
         // Append job parameter input elements to the job fields div
         jobsFields.appendChild(jobRow);
 
@@ -99,9 +150,6 @@ fetch(`/user/edit?email=${email}`, {
 const addJobButton = document.getElementById("add-job");
 const jobsFields = document.getElementById("jobs-fields");
 const jobsTable = document.getElementById("jobs-table");
-let jobCount = 1; // Keep track of the number of job input sets
-let responsibilityCount = 0;
-let responsibilityCountArray = [0];
 
 addJobButton.addEventListener("click", (event) => {
   event.preventDefault();
@@ -211,6 +259,7 @@ form.addEventListener("submit", (event) => {
   userProfile.jobs = [];
 
   // Loop over the job fields and add each job to the array
+  console.log("current job count" + jobCount);
   for (let i = 1; i < jobCount; i++) {
     const jobStartDateString = form.elements[`job-${i}-startDate`].value;
     const jobStartDate = new Date(jobStartDateString);
@@ -220,6 +269,7 @@ form.addEventListener("submit", (event) => {
     // Define an empty array to store responsibilities
     const responsibilities = [];
     // Loop through each responsibility input and add its value to the array
+    console.log("current responsibility count array" + responsibilityCountArray);
     for (let j = 1; j <= responsibilityCountArray[i]; j++) {
       const responsibilityInput = form.elements[`job-${i}-responsibility-${j}`];
       if (responsibilityInput.value) {
