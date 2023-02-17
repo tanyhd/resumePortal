@@ -268,7 +268,6 @@ form.addEventListener("submit", (event) => {
   userProfile.jobs = [];
 
   // Loop over the job fields and add each job to the array
-  console.log("current job count" + jobCount);
   for (let i = 1; i < jobCount; i++) {
     const jobStartDateString = form.elements[`job-${i}-startDate`].value;
     const jobStartDate = new Date(jobStartDateString);
@@ -278,7 +277,6 @@ form.addEventListener("submit", (event) => {
     // Define an empty array to store responsibilities
     const responsibilities = [];
     // Loop through each responsibility input and add its value to the array
-    console.log("current responsibility count array" + responsibilityCountArray);
     for (let j = 1; j <= responsibilityCountArray[i]; j++) {
       const responsibilityInput = form.elements[`job-${i}-responsibility-${j}`];
       if (responsibilityInput.value) {
