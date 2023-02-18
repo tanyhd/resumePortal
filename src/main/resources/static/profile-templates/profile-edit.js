@@ -25,6 +25,10 @@ fetch(`/user/edit?email=${email}`, {
     form.elements.firstName.value = userProfile.firstName;
     form.elements.lastName.value = userProfile.lastName;
     form.elements.theme.value = userProfile.theme;
+    form.elements.designation.value = userProfile.designation;
+    form.elements.phoneNumber.value = userProfile.phoneNumber;
+    form.elements.summary.value = userProfile.summary;
+
     // Populate more fields here as needed
 
     // Populate job fields
@@ -263,7 +267,6 @@ form.addEventListener("submit", (event) => {
 
   const formData = new FormData(form); // Get the form data
   const userProfile = Object.fromEntries(formData.entries()); // Convert the form data to an object
-
   // Create an array to hold the job objects
   userProfile.jobs = [];
 

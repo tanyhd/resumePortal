@@ -7,6 +7,7 @@ import myapp.resume.portal.model.JwtAuthentication.RegisterRequest;
 import myapp.resume.portal.model.user.*;
 import myapp.resume.portal.repository.UserProfileRepository;
 import myapp.resume.portal.repository.UserRepository;
+import myapp.resume.portal.service.userProfile.UserProfileService;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -20,6 +21,7 @@ public class AuthenticationService {
 
     private final UserRepository userRepository;
     private final UserProfileRepository userProfileRepository;
+    private final UserProfileService userProfileService;
     private final PasswordEncoder passwordEncoder;
     private final JwtService jwtService;
     private final AuthenticationManager authenticationManager;
@@ -34,15 +36,7 @@ public class AuthenticationService {
                 .uniqueUserId(uniqueUserIdFormatted)
                 .build();
         userRepository.save(user);
-        var userProfile = UserProfile.builder()
-                .email(request.getEmail())
-                .uniqueUserId(uniqueUserIdFormatted)
-                .theme(1)
-                .skills(Skill.builder()
-                        .languages(List.of("English"))
-                        .technologys(List.of("Java"))
-                        .build())
-                .build();
+        var userProfile = userProfileService.getSampleUserProfile(uniqueUserIdFormatted, request.getEmail());
         userProfileRepository.save(userProfile);
         var jwtToken = jwtService.generateToken(user);
         return AuthenticationResponse.builder()
