@@ -116,8 +116,13 @@ fetch(`/user/edit?email=${email}`, {
         responsibilitiesCell.textContent = "";
         responsibilitiesCell.appendChild(responsibilitiesList);
         jobRow.appendChild(responsibilitiesCell);
+
+        // Create the add and remove responsibility buttons
         const addResponsibilityButton = document.createElement("button");
         addResponsibilityButton.textContent = "+";
+        const removeResponsibilityButton = document.createElement("button");
+        removeResponsibilityButton.textContent = "-";
+
         const addLength = job.responsibilities.length - 1;
         addResponsibilityButton.addEventListener("click", (event) => {
           event.preventDefault();
@@ -134,10 +139,26 @@ fetch(`/user/edit?email=${email}`, {
           responsibilitiesList.appendChild(newResponsibility);
           responsibilityCountArray[resJobCount] = responsibilityCount + addLength;
         });
-      
+
+        removeResponsibilityButton.addEventListener("click", (event) => {
+          event.preventDefault();
+          if ((responsibilityCount + addLength) > 0) {
+            responsibilitiesList.removeChild(
+              responsibilitiesList.childNodes[responsibilityCount + addLength - 1]
+            );
+            responsibilityCount--;
+            responsibilityCountArray[resJobCount] = responsibilityCount + addLength;
+          }
+        });
+
+
         const addResponsibilityCell = document.createElement("td");
         addResponsibilityCell.appendChild(addResponsibilityButton);
+        const removeResponsibilityCell = document.createElement("td");
+        removeResponsibilityCell.appendChild(removeResponsibilityButton);
+
         jobRow.appendChild(addResponsibilityCell);
+        jobRow.appendChild(removeResponsibilityCell);
 
         // Append job parameter input elements to the job fields div
         jobsFields.appendChild(jobRow);
@@ -224,8 +245,12 @@ addJobButton.addEventListener("click", (event) => {
   responsibilitiesCell.appendChild(responsibilitiesList);
   jobRow.appendChild(responsibilitiesCell);
 
+  // Create the add and remove responsibility buttons
   const addResponsibilityButton = document.createElement("button");
   addResponsibilityButton.textContent = "+";
+  const removeResponsibilityButton = document.createElement("button");
+  removeResponsibilityButton.textContent = "-";
+
   addResponsibilityButton.addEventListener("click", (event) => {
     event.preventDefault();
     responsibilityCount++;
@@ -242,9 +267,23 @@ addJobButton.addEventListener("click", (event) => {
     responsibilityCountArray[resJobCount] = responsibilityCount;
   });
 
+  removeResponsibilityButton.addEventListener("click", (event) => {
+    event.preventDefault();
+    if (responsibilityCount > 0) {
+      responsibilitiesList.removeChild(
+        responsibilitiesList.childNodes[responsibilityCount - 1]
+      );
+      responsibilityCount--;
+    }
+  });
+
   const addResponsibilityCell = document.createElement("td");
   addResponsibilityCell.appendChild(addResponsibilityButton);
+  const removeResponsibilityCell = document.createElement("td");
+  removeResponsibilityCell.appendChild(removeResponsibilityButton);
+
   jobRow.appendChild(addResponsibilityCell);
+  jobRow.appendChild(removeResponsibilityCell);
 
   // Append the new job row to the table
   jobsFields.appendChild(jobRow);
