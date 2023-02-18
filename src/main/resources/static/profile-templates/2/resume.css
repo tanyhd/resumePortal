@@ -69,4 +69,4 @@ a#pdf:hover { background: #222; }
 .yui-gf .yui-u{width:80.2%;}
 .yui-gf div.first{width:12.3%;}
 
-
+#back-button { margin-top: 40px; padding: 10px 20px; background-color: #4CAF50; color: white; border: none; border-radius: 4px; font-size: 20px; }

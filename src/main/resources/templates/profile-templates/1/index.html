@@ -1,13 +1,9 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-
 <html xmlns:th = "http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
-
 <head>
      <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-
      <title>Template Resume 1</title>
-
      <style type="text/css">
         * { margin: 0; padding: 0; }
         body { font: 16px Helvetica, Sans-Serif; line-height: 24px; background: url(../profile-templates/1/images/noise.jpg); }
@@ -26,29 +22,23 @@
         dt { font-style: italic; font-weight: bold; font-size: 18px; text-align: right; padding: 0 26px 0 0; width: 150px; float: left; height: 100px; border-right: 1px solid #999;  }
         dd { width: 600px; float: right; }
         dd.clear { float: none; margin: 0; height: 15px; }
+        #button-container { text-align: center; }
+        #back-button { margin-top: 40px; padding: 10px 20px; background-color: #4CAF50; color: white; border: none; border-radius: 4px; font-size: 20px; }
      </style>
 </head>
 
 <body>
-
-
     <div id="page-wrap">
-    
         <img src="../profile-templates/1/images/cthulu.png" alt="Photo of Cthulu" id="pic" />
-    
         <div id="contact-info" class="vcard">
-        
             <!-- Microformats! -->
-        
             <h1 class="fn" th:text="${userProfile.firstName} + ' ' + ${userProfile.lastName}">C'thulhu</h1>
-        
             <p>
                 Cell: <span class="tel" th:text="${userProfile.phoneNumber}">555-666-7777</span><br />
                 Email: <a class="email" th:text="${userProfile.email}">greatoldone@lovecraft.com</a><br />
                 Designation: <span th:text="${userProfile.designation}"></span>
             </p>
         </div>
-                
         <div id="objective">
             <p th:text="${userProfile.summary}">
                 I am an outgoing and energetic (ask anybody) young professional, seeking a 
@@ -57,12 +47,9 @@
                 I can bring world domination to your organization. 
             </p>
         </div>
-        
         <div class="clear"></div>
-        
         <dl>
             <dd class="clear"></dd>
-            
             <dt>Education</dt>
             <dd th:each="education : ${userProfile.educations}">
                 <h2 th:text="${education.university}">My University</h2>
@@ -72,24 +59,19 @@
                 </p>
                 <p th:text="${education.qualification}">BSc. Honours Computer Science With Software Engineering Specialization</p>
             </dd>
-            
             <dd class="clear"></dd>
-            
             <dt>Skills</dt>
             <dd>
                 <h2>Language</h2>
                 <ul>
                     <li th:each="language : ${userProfile.skills.languages}" th:text="${language}">Java</li>
                 </ul>
-                
                 <h2>Technology</h2>
                 <ul>
                     <li th:each="technology : ${userProfile.skills.technologys}" th:text="${technology}" >Spring Boot</li>
                 </ul>
             </dd>
-            
             <dd class="clear"></dd>
-            
             <dt>Experience</dt>
             <dd th:each="job : ${userProfile.jobs}">
                 <h2 th:text="${job.designation} + ' at ' + ${job.company}"></h2>
@@ -102,9 +84,7 @@
                     <li th:each="responsibility : ${job.responsibilities}" th:text="${responsibility}">Inspired and won highest peasant death competition among servants</li>
                 </ul>
             </dd>
-            
             <dd class="clear"></dd>
-            
             <dt>Projects</dt>
             <dd th:each="project : ${userProfile.projects}">
                 <h2 th:text="${project.title}">Doomsday Cult</h2>
@@ -114,12 +94,10 @@
             </dd>
             <dd class="clear"></dd>
         </dl>
-        
         <div class="clear"></div>
-    
     </div>
     <div>
-        <button id="back-button">Back</button>
+        <button id="back-button">EDIT</button>
     </div>
     <script type="text/javascript">
         // Retrieve token and email from storage
@@ -134,5 +112,7 @@
         });
     </script>
 </body>
-
 </html>
+
+
+
