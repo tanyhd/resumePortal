@@ -122,8 +122,10 @@ fetch(`/user/edit?email=${email}`, {
         // Create the add and remove responsibility buttons
         const addResponsibilityButton = document.createElement("button");
         addResponsibilityButton.textContent = "+";
+        addResponsibilityButton.setAttribute("class", "btn btn-primary");
         const removeResponsibilityButton = document.createElement("button");
         removeResponsibilityButton.textContent = "-";
+        removeResponsibilityButton.setAttribute("class", "btn btn-danger");
 
         const addLength = job.responsibilities.length - 1;
         addResponsibilityButton.addEventListener("click", (event) => {
@@ -328,8 +330,10 @@ addJobButton.addEventListener("click", (event) => {
   // Create the add and remove responsibility buttons
   const addResponsibilityButton = document.createElement("button");
   addResponsibilityButton.textContent = "+";
+  addResponsibilityButton.setAttribute("class", "btn btn-primary");
   const removeResponsibilityButton = document.createElement("button");
   removeResponsibilityButton.textContent = "-";
+  removeResponsibilityButton.setAttribute("class", "btn btn-danger");
 
   addResponsibilityButton.addEventListener("click", (event) => {
     event.preventDefault();
