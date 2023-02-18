@@ -14,30 +14,48 @@
             <label for="email">Email:</label>
             <input type="email" class="form-control" id="email" name="email" readonly>
         </div>
-        <div class="form-group">
-            <label for="firstName">First Name:</label>
-            <input type="text" class="form-control" id="firstName" name="firstName">
+
+        <div class="row">
+            <div class="col">
+                <div class="form-group">
+                    <label for="firstName">First Name:</label>
+                    <input type="text" class="form-control" id="firstName" name="firstName">
+                </div>
+            </div>
+            <div class="col">
+                <div class="form-group">
+                    <label for="lastName">Last Name:</label>
+                    <input type="text" class="form-control" id="lastName" name="lastName">
+                </div>
+            </div>
         </div>
-        <div class="form-group">
-            <label for="lastName">Last Name:</label>
-            <input type="text" class="form-control" id="lastName" name="lastName">
-        </div>
-        <div class="form-group">
-            <label for="designation">Designation: </label>
-            <input type="text" class="form-control" id="designation" name="designation">
-        </div>
-        <div class="form-group">
-            <label for="phoneNumber">Phone Number: </label>
-            <input type="text" class="form-control" id="phoneNumber" name="phoneNumber">
+        <div class="row">
+            <div class="col">
+                <div class="form-group">
+                    <label for="designation">Designation: </label>
+                    <input type="text" class="form-control" id="designation" name="designation">
+                </div>
+            </div>
+            <div class="col">
+                <div class="form-group">
+                    <label for="phoneNumber">Phone Number: </label>
+                    <input type="text" class="form-control" id="phoneNumber" name="phoneNumber">
+                </div>
+            </div>
         </div>
         <div class="form-group">
             <label for="theme">Theme:</label>
-            <input type="text" class="form-control" id="theme" name="theme">
+            <select class="form-control" id="theme" name="theme">
+                <option value="1">Option 1</option>
+                <option value="2">Option 2</option>
+                <option value="3">Option 3</option>
+            </select>
         </div>
         <div class="form-group">
             <label for="summary">Summary:</label>
             <textarea class="form-control" id="summary" name="summary" rows="5"></textarea>
         </div>
+
         <div class="form-group">
             <label>Jobs:</label>
             <table class="table" id="jobs-table">
@@ -56,11 +74,25 @@
             <button type="button" class="btn btn-primary" id="add-job">Add Job</button>
             <button type="button" class="btn btn-danger" id="remove-job">-</button>
         </div>
+
         <div class="form-group">
             <label>Educations:</label>
-            <div id="educations-fields"></div>
+            <table class="table" id="educations-table">
+                <thead>
+                <tr>
+                    <th>University</th>
+                    <th>Qualification</th>
+                    <th>Start Date</th>
+                    <th>End Date</th>
+                </tr>
+                </thead>
+                <tbody id="educations-fields">
+                </tbody>
+            </table>
             <button type="button" class="btn btn-primary" id="add-education">Add Education</button>
+            <button type="button" class="btn btn-danger" id="remove-education">-</button>
         </div>
+
         <div class="form-group">
             <label>Skills:</label>
             <div id="skills-fields"></div>

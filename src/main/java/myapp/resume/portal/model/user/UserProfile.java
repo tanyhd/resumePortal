@@ -34,7 +34,7 @@ public class UserProfile {
     @JoinColumn(name = "job_id")
     private List<Job> jobs;
 
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "education_id")
     private List<Education> educations;
     @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)

@@ -1,6 +1,9 @@
 const token = localStorage.getItem("token");
 const email = localStorage.getItem("email"); // Replace with the user's email
+
 let jobCount = 1; // Keep track of the number of job input sets
+let educationCount = 1; // Keep track of the number of education input sets
+
 let responsibilityCount = 0;
 let responsibilityCountArray = [0];
 
@@ -28,10 +31,9 @@ fetch(`/user/edit?email=${email}`, {
     form.elements.designation.value = userProfile.designation;
     form.elements.phoneNumber.value = userProfile.phoneNumber;
     form.elements.summary.value = userProfile.summary;
-
     // Populate more fields here as needed
 
-    // Populate job fields
+    // Populate jobs fields
     if (userProfile.jobs) {
       for (let i = 0; i < userProfile.jobs.length; i++) {
         const job = userProfile.jobs[i];
@@ -166,16 +168,94 @@ fetch(`/user/edit?email=${email}`, {
         jobCount++;
       }
     }
+
+    // Populate Education fields
+    if (userProfile.educations) {
+      for (let i = 0; i < userProfile.educations.length; i++) {
+        const education = userProfile.educations[i];
+
+        // Create a new row for the job
+        const educationRow = document.createElement("tr");
+        educationsTable.appendChild(educationRow);
+
+        // Add input field for university parameter
+        const universityLabel = document.createElement("label");
+        universityLabel.setAttribute("for", `education-${educationCount}-university`);
+        universityLabel.textContent = "University:";
+        const universityInput = document.createElement("input");
+        universityInput.setAttribute("type", "text");
+        universityInput.setAttribute("id", `education-${educationCount}-university`);
+        universityInput.setAttribute("name", `education-${educationCount}-university`);
+        const universityCell = document.createElement("td");
+        universityInput.value = education.university;
+        universityCell.appendChild(universityInput);
+        educationRow.appendChild(universityCell);
+
+        // Add input field for qualification parameter
+        const qualificationLabel = document.createElement("label");
+        qualificationLabel.setAttribute("for", `education-${educationCount}-qualification`);
+        qualificationLabel.textContent = "Qualification:";
+        const qualificationInput = document.createElement("input");
+        qualificationInput.setAttribute("type", "text");
+        qualificationInput.setAttribute("id", `education-${educationCount}-qualification`);
+        qualificationInput.setAttribute("name", `education-${educationCount}-qualification`);
+        const qualificationCell = document.createElement("td");
+        qualificationInput.value = education.qualification;
+        qualificationCell.appendChild(qualificationInput);
+        educationRow.appendChild(qualificationCell);
+
+        // Add input field for startDate parameter
+        const startDateLabel = document.createElement("label");
+        startDateLabel.setAttribute("for", `education-${educationCount}-startDate`);
+        startDateLabel.textContent = "Start Date:";
+        const startDateInput = document.createElement("input");
+        startDateInput.setAttribute("type", "date");
+        startDateInput.setAttribute("id", `education-${educationCount}-startDate`);
+        startDateInput.setAttribute("name", `education-${educationCount}-startDate`);
+        const startDateCell = document.createElement("td");
+        startDateInput.value = education.startDate;
+        startDateCell.appendChild(startDateInput);
+        educationRow.appendChild(startDateCell);
+
+        // Add input field for endDate parameter
+        const endDateLabel = document.createElement("label");
+        endDateLabel.setAttribute("for", `education-${educationCount}-endDate`);
+        endDateLabel.textContent = "End Date:";
+        const endDateInput = document.createElement("input");
+        endDateInput.setAttribute("type", "date");
+        endDateInput.setAttribute("id", `education-${educationCount}-endDate`);
+        endDateInput.setAttribute("name", `education-${educationCount}-endDate`);
+        const endDateCell = document.createElement("td");
+        endDateInput.value = education.endDate;
+        endDateCell.appendChild(endDateInput);
+        educationRow.appendChild(endDateCell);
+
+        // Append job parameter input elements to the job fields div
+        educationsFields.appendChild(educationRow);
+
+        educationCount++;
+      }
+    }
+
+
   })
   .catch((error) => {
     console.error(error);
     window.location.href = "/home/login-error"; // Replace with the URL of your error page
   });
 
+
+// jobs button
 const addJobButton = document.getElementById("add-job");
 const jobsFields = document.getElementById("jobs-fields");
 const jobsTable = document.getElementById("jobs-table");
 
+// educations button
+const addEducationButton = document.getElementById("add-education");
+const educationsFields = document.getElementById("educations-fields");
+const educationsTable = document.getElementById("educations-table");
+
+// Add jobs button event
 addJobButton.addEventListener("click", (event) => {
   event.preventDefault();
 
@@ -291,6 +371,61 @@ addJobButton.addEventListener("click", (event) => {
   jobCount++;
 });
 
+// Add educations button event
+addEducationButton.addEventListener("click", (event) => {
+  event.preventDefault();
+
+  // Create a new row for the education
+  const educationRow = document.createElement("tr");
+  educationsTable.appendChild(educationRow);
+
+  // Add input field for university parameter
+  const universityInput = document.createElement("input");
+  universityInput.setAttribute("type", "text");
+  universityInput.setAttribute("id", `education-${educationCount}-university`);
+  universityInput.setAttribute("name", `education-${educationCount}-university`);
+  const universityCell = document.createElement("td");
+  universityCell.textContent = "";
+  universityCell.appendChild(universityInput);
+  educationRow.appendChild(universityCell);
+
+  // Add input field for qualification parameter
+  const qualificationInput = document.createElement("input");
+  qualificationInput.setAttribute("type", "text");
+  qualificationInput.setAttribute("id", `education-${educationCount}-qualification`);
+  qualificationInput.setAttribute("name", `education-${educationCount}-qualification`);
+  const qualificationCell = document.createElement("td");
+  qualificationCell.textContent = "";
+  qualificationCell.appendChild(qualificationInput);
+  educationRow.appendChild(qualificationCell);
+
+  // Add input field for startDate parameter
+  const startDateInput = document.createElement("input");
+  startDateInput.setAttribute("type", "date");
+  startDateInput.setAttribute("id", `education-${educationCount}-startDate`);
+  startDateInput.setAttribute("name", `education-${educationCount}-startDate`);
+  const startDateCell = document.createElement("td");
+  startDateCell.textContent = "";
+  startDateCell.appendChild(startDateInput);
+  educationRow.appendChild(startDateCell);
+
+  // Add input field for endDate parameter
+  const endDateInput = document.createElement("input");
+  endDateInput.setAttribute("type", "date");
+  endDateInput.setAttribute("id", `education-${educationCount}-endDate`);
+  endDateInput.setAttribute("name", `education-${educationCount}-endDate`);
+  const endDateCell = document.createElement("td");
+  endDateCell.textContent = "";
+  endDateCell.appendChild(endDateInput);
+  educationRow.appendChild(endDateCell);
+
+  // Append the new job row to the table
+  educationsFields.appendChild(educationRow);
+
+  educationCount++;
+});
+
+// Remove jobs button event
 const removeJobButton = document.getElementById("remove-job");
 removeJobButton.addEventListener("click", function() {
   const jobsTable = document.getElementById("jobs-fields");
@@ -300,14 +435,27 @@ removeJobButton.addEventListener("click", function() {
   }
 });
 
+// Remove educations button event
+const removeEducationButton = document.getElementById("remove-education");
+removeEducationButton.addEventListener("click", function() {
+  const educationsTable = document.getElementById("educations-fields");
+  if (educationsTable.rows.length > 0) {
+    educationsTable.deleteRow(-1);
+    educationCount--;
+  }
+});
+
+
 const form = document.getElementById("profile-form");
 form.addEventListener("submit", (event) => {
   event.preventDefault(); // Prevent the default form submission behavior
-
   const formData = new FormData(form); // Get the form data
   const userProfile = Object.fromEntries(formData.entries()); // Convert the form data to an object
+
   // Create an array to hold the job objects
   userProfile.jobs = [];
+  // Create an array to hold the education objects
+  userProfile.educations = [];
 
   // Loop over the job fields and add each job to the array
   for (let i = 1; i < jobCount; i++) {
@@ -335,6 +483,23 @@ form.addEventListener("submit", (event) => {
       // Add more job properties here as needed
     };
     userProfile.jobs.push(job);
+  }
+
+  // Lopp over the educations fields and add each education to the array
+  for (let i = 1; i < educationCount; i++) {
+    const educationStartDateString = form.elements[`education-${i}-startDate`].value;
+    const educationStartDate = new Date(educationStartDateString);
+    const educationEndDateString = form.elements[`education-${i}-endDate`].value;
+    const educationEndDate = new Date(educationEndDateString);
+
+    const education = {
+      university: form.elements[`education-${i}-university`].value,
+      qualification: form.elements[`education-${i}-qualification`].value,
+      startDate: educationStartDate,
+      endDate: educationEndDate,
+      // Add more education properties here as needed
+    };
+    userProfile.educations.push(education);
   }
 
   const jsonUserProfile = JSON.stringify(userProfile); // Convert the object to JSON

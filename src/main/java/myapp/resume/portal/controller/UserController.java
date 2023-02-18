@@ -32,6 +32,7 @@ public class UserController {
         existingUserProfile.setPhoneNumber(updatedUserProfile.getPhoneNumber());
         existingUserProfile.setDesignation(updatedUserProfile.getDesignation());
         existingUserProfile.setJobs(updatedUserProfile.getJobs());
+        existingUserProfile.setEducations(updatedUserProfile.getEducations());
 
         return userProfileRepository.save(existingUserProfile);
     }
