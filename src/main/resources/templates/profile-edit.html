@@ -3,8 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <title>Profile</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" crossorigin="anonymous">
 </head>
 <body>
 <div class="container">
@@ -58,6 +60,9 @@
 
         <div class="form-group">
             <label>Jobs:</label>
+            <div class="d-inline-block ml-2">
+                <i class="fa fa-question-circle" data-toggle="tooltip" data-placement="top" title="Please set end date to today's date if it is your current job."></i>
+            </div>
             <table class="table" id="jobs-table">
                 <thead>
                 <tr>

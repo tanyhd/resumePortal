@@ -4,6 +4,9 @@ import lombok.RequiredArgsConstructor;
 import myapp.resume.portal.model.user.UserProfile;
 import myapp.resume.portal.repository.UserProfileRepository;
 import org.springframework.web.bind.annotation.*;
+
+import java.time.LocalDate;
+import java.util.Objects;
 import java.util.Optional;
 
 @RestController
@@ -22,6 +25,14 @@ public class UserController {
     @PostMapping("/user/edit")
     public UserProfile postEdit(@RequestBody UserProfile updatedUserProfile) {
         UserProfile existingUserProfile = userProfileRepository.findByEmail(updatedUserProfile.getEmail()).get();
+
+        updatedUserProfile.getJobs().forEach(
+                job -> {
+                    if (job.getEndDate().equals(LocalDate.now())) {
+                        job.setCurrentJob(true);
+                    }
+                }
+        );
 
         // Save the updatedUserProfile object to your data store
         // Update existingUserProfile with values from updatedUserProfile
