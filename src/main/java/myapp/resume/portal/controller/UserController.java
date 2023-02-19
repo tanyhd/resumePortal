@@ -33,6 +33,7 @@ public class UserController {
         existingUserProfile.setDesignation(updatedUserProfile.getDesignation());
         existingUserProfile.setJobs(updatedUserProfile.getJobs());
         existingUserProfile.setEducations(updatedUserProfile.getEducations());
+        existingUserProfile.setProjects(updatedUserProfile.getProjects());
 
         return userProfileRepository.save(existingUserProfile);
     }

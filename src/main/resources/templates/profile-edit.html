@@ -98,11 +98,25 @@
             <div id="skills-fields"></div>
             <button type="button" class="btn btn-primary" id="add-skill">Add Skill</button>
         </div>
+
         <div class="form-group">
             <label>Projects:</label>
-            <div id="projects-fields"></div>
+            <table class="table" id="projects-table">
+                <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>Description</th>
+                    <th>Technology</th>
+                    <th>Link</th>
+                </tr>
+                </thead>
+                <tbody id="projects-fields">
+                </tbody>
+            </table>
             <button type="button" class="btn btn-primary" id="add-project">Add Project</button>
+            <button type="button" class="btn btn-danger" id="remove-project">-</button>
         </div>
+
         <!-- Add more fields here as needed -->
         <div class="form-group">
             <button type="submit" class="btn btn-primary">Save</button>

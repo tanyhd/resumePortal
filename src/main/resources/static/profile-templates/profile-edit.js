@@ -3,6 +3,7 @@ const email = localStorage.getItem("email"); // Replace with the user's email
 
 let jobCount = 1; // Keep track of the number of job input sets
 let educationCount = 1; // Keep track of the number of education input sets
+let projectCount = 1; // Keep track of the number of project input sets
 
 let responsibilityCount = 0;
 let responsibilityCountArray = [0];
@@ -171,12 +172,12 @@ fetch(`/user/edit?email=${email}`, {
       }
     }
 
-    // Populate Education fields
+    // Populate Educations fields
     if (userProfile.educations) {
       for (let i = 0; i < userProfile.educations.length; i++) {
         const education = userProfile.educations[i];
 
-        // Create a new row for the job
+        // Create a new row for the education
         const educationRow = document.createElement("tr");
         educationsTable.appendChild(educationRow);
 
@@ -238,7 +239,74 @@ fetch(`/user/edit?email=${email}`, {
         educationCount++;
       }
     }
+ 
+    // Populate Projects fields
+    if (userProfile.projects) {
+      for (let i = 0; i < userProfile.projects.length; i++) {
+        const project = userProfile.projects[i];
+        
+        // Create a new row for the project
+        const projectRow = document.createElement("tr");
+        projectsTable.appendChild(projectRow);
+    
+        // Add input field for title parameter
+        const titleLabel = document.createElement("label");
+        titleLabel.setAttribute("for", `project-${educationCount}-title`);
+        titleLabel.textContent = "Title:";
+        const titleInput = document.createElement("input");
+        titleInput.setAttribute("type", "text");
+        titleInput.setAttribute("id", `project-${projectCount}-title`);
+        titleInput.setAttribute("name", `project-${projectCount}-title`);
+        const titleCell = document.createElement("td");
+        titleInput.value = project.title;
+        titleCell.appendChild(titleInput);
+        projectRow.appendChild(titleCell);
+    
+        // Add input field for description parameter
+        const descriptionLabel = document.createElement("label");
+        descriptionLabel.setAttribute("for", `project-${projectCount}-description`);
+        descriptionLabel.textContent = "Description:";
+        const descriptionInput = document.createElement("input");
+        descriptionInput.setAttribute("type", "text");
+        descriptionInput.setAttribute("id", `project-${projectCount}-description`);
+        descriptionInput.setAttribute("name", `project-${projectCount}-description`);
+        const descriptionCell = document.createElement("td");
+        descriptionInput.value = project.description;
+        descriptionCell.appendChild(descriptionInput);
+        projectRow.appendChild(descriptionCell);
 
+        // Add input field for description parameter
+        const technologyUsedLabel = document.createElement("label");
+        technologyUsedLabel.setAttribute("for", `project-${projectCount}-technologyUsed`);
+        technologyUsedLabel.textContent = "Technology:";
+        const technologyUsedInput = document.createElement("input");
+        technologyUsedInput.setAttribute("type", "text");
+        technologyUsedInput.setAttribute("id", `project-${projectCount}-technologyUsed`);
+        technologyUsedInput.setAttribute("name", `project-${projectCount}-technologyUsed`);
+        const technologyUsedCell = document.createElement("td");
+        technologyUsedInput.value = project.technologyUsed;
+        technologyUsedCell.appendChild(technologyUsedInput);
+        projectRow.appendChild(technologyUsedCell);
+
+        // Add input field for linkToProject parameter
+        const linkToProjectLabel = document.createElement("label");
+        linkToProjectLabel.setAttribute("for", `project-${projectCount}-linkToProject`);
+        linkToProjectLabel.textContent = "Link:";
+        const linkToProjectInput = document.createElement("input");
+        linkToProjectInput.setAttribute("type", "text");
+        linkToProjectInput.setAttribute("id", `project-${projectCount}-linkToProject`);
+        linkToProjectInput.setAttribute("name", `project-${projectCount}-linkToProject`);
+        const linkToProjectCell = document.createElement("td");
+        linkToProjectInput.value = project.linkToProject;
+        linkToProjectCell.appendChild(linkToProjectInput);
+        projectRow.appendChild(linkToProjectCell);
+        
+        // Append job parameter input elements to the job fields div
+        projectsFields.appendChild(projectRow);
+    
+        projectCount++;
+      }
+    }
 
   })
   .catch((error) => {
@@ -256,6 +324,11 @@ const jobsTable = document.getElementById("jobs-table");
 const addEducationButton = document.getElementById("add-education");
 const educationsFields = document.getElementById("educations-fields");
 const educationsTable = document.getElementById("educations-table");
+
+// projects button
+const addProjectButton = document.getElementById("add-project");
+const projectsFields = document.getElementById("projects-fields");
+const projectsTable = document.getElementById("projects-table");
 
 // Add jobs button event
 addJobButton.addEventListener("click", (event) => {
@@ -429,6 +502,60 @@ addEducationButton.addEventListener("click", (event) => {
   educationCount++;
 });
 
+// Add projects button event
+addProjectButton.addEventListener("click", (event) => {
+  event.preventDefault();
+
+  // Create a new row for the project
+  const projectRow = document.createElement("tr");
+  projectsTable.appendChild(projectRow);
+
+  // Add input field for title parameter
+  const titleInput = document.createElement("input");
+  titleInput.setAttribute("type", "text");
+  titleInput.setAttribute("id", `project-${projectCount}-title`);
+  titleInput.setAttribute("name", `project-${projectCount}-title`);
+  const titleCell = document.createElement("td");
+  titleCell.textContent = "";
+  titleCell.appendChild(titleInput);
+  projectRow.appendChild(titleCell);
+
+  // Add input field for description parameter
+  const descriptionInput = document.createElement("input");
+  descriptionInput.setAttribute("type", "text");
+  descriptionInput.setAttribute("id", `project-${projectCount}-description`);
+  descriptionInput.setAttribute("name", `project-${projectCount}-description`);
+  const descriptionCell = document.createElement("td");
+  descriptionCell.textContent = "";
+  descriptionCell.appendChild(descriptionInput);
+  projectRow.appendChild(descriptionCell);
+
+  // Add input field for technologyUsed parameter
+  const technologyUsedInput = document.createElement("input");
+  technologyUsedInput.setAttribute("type", "text");
+  technologyUsedInput.setAttribute("id", `project-${projectCount}-technologyUsed`);
+  technologyUsedInput.setAttribute("name", `project-${projectCount}-technologyUsed`);
+  const technologyUsedCell = document.createElement("td");
+  technologyUsedCell.textContent = "";
+  technologyUsedCell.appendChild(technologyUsedInput);
+  projectRow.appendChild(technologyUsedCell);
+  
+  // Add input field for linkToProject parameter
+  const linkToProjectInput = document.createElement("input");
+  linkToProjectInput.setAttribute("type", "text");
+  linkToProjectInput.setAttribute("id", `project-${projectCount}-linkToProject`);
+  linkToProjectInput.setAttribute("name", `project-${projectCount}-linkToProject`);
+  const linkToProjectCell = document.createElement("td");
+  linkToProjectCell.textContent = "";
+  linkToProjectCell.appendChild(linkToProjectInput);
+  projectRow.appendChild(linkToProjectCell);
+
+  // Append the new project row to the table
+  projectsFields.appendChild(projectRow);
+
+  projectCount++;
+});
+
 // Remove jobs button event
 const removeJobButton = document.getElementById("remove-job");
 removeJobButton.addEventListener("click", function() {
@@ -449,6 +576,16 @@ removeEducationButton.addEventListener("click", function() {
   }
 });
 
+// Remove projects button event
+const removeProjectButton = document.getElementById("remove-project");
+removeProjectButton.addEventListener("click", function() {
+  const projectsTable = document.getElementById("projects-fields");
+  if (projectsTable.rows.length > 0) {
+    projectsTable.deleteRow(-1);
+    projectCount--;
+  }
+});
+
 
 const form = document.getElementById("profile-form");
 form.addEventListener("submit", (event) => {
@@ -460,6 +597,8 @@ form.addEventListener("submit", (event) => {
   userProfile.jobs = [];
   // Create an array to hold the education objects
   userProfile.educations = [];
+  // Create an array to hold the project objects
+  userProfile.projects = [];
 
   // Loop over the job fields and add each job to the array
   for (let i = 1; i < jobCount; i++) {
@@ -504,6 +643,19 @@ form.addEventListener("submit", (event) => {
       // Add more education properties here as needed
     };
     userProfile.educations.push(education);
+  }
+
+  // Lopp over the projects fields and add each project to the array
+  for (let i = 1; i < projectCount; i++) {
+
+    const project = {
+      title: form.elements[`project-${i}-title`].value,
+      description: form.elements[`project-${i}-description`].value,
+      technologyUsed: form.elements[`project-${i}-technologyUsed`].value,
+      linkToProject: form.elements[`project-${i}-linkToProject`].value,
+      // Add more project properties here as needed
+    };
+    userProfile.projects.push(project);
   }
 
   const jsonUserProfile = JSON.stringify(userProfile); // Convert the object to JSON

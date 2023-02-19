@@ -41,7 +41,7 @@ public class UserProfile {
     @JoinColumn(name = "skill_id")
     private Skill skills;
 
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "project_id")
     private List<Project> projects;
 
