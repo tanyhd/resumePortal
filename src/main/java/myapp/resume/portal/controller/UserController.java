@@ -42,6 +42,8 @@ public class UserController {
         existingUserProfile.setLastName(updatedUserProfile.getLastName());
         existingUserProfile.setPhoneNumber(updatedUserProfile.getPhoneNumber());
         existingUserProfile.setDesignation(updatedUserProfile.getDesignation());
+        existingUserProfile.setLinkedIn(updatedUserProfile.getLinkedIn());
+        existingUserProfile.setGitHub(updatedUserProfile.getGitHub());
         existingUserProfile.setJobs(updatedUserProfile.getJobs());
         existingUserProfile.setEducations(updatedUserProfile.getEducations());
         existingUserProfile.setProjects(updatedUserProfile.getProjects());

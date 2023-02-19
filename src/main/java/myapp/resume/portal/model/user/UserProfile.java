@@ -29,6 +29,8 @@ public class UserProfile {
     @Column(unique = true)
     private String email;
     private String uniqueUserId;
+    private String linkedIn;
+    private String gitHub;
 
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "job_id")

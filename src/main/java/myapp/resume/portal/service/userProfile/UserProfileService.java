@@ -19,6 +19,8 @@ public class UserProfileService {
                 .lastName("Doe")
                 .designation("Software Engineer")
                 .uniqueUserId(userId)
+                .linkedIn("https://linkedin.com")
+                .gitHub("https://github.com/")
                 .jobs(List.of(
                         Job.builder()
                                 .company("Company Name")

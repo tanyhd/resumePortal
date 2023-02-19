@@ -32,6 +32,8 @@ fetch(`/user/edit?email=${email}`, {
     form.elements.designation.value = userProfile.designation;
     form.elements.phoneNumber.value = userProfile.phoneNumber;
     form.elements.summary.value = userProfile.summary;
+    form.elements.linkedIn.value = userProfile.linkedIn;
+    form.elements.gitHub.value = userProfile.gitHub;
     // Populate more fields here as needed
 
     // Populate jobs fields
