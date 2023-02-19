@@ -1,11 +1,8 @@
 spring:
   datasource:
-    url: jdbc:mariadb://localhost:3306/resumePortal
-    #url: jdbc:mysql://localhost:3307/resumeportal
-    username: root
-    password:
-    type: com.zaxxer.hikari.HikariDataSource
-    driver-class-name: org.mariadb.jdbc.Driver
+    url: jdbc:mysql://${PROD_DB_HOST}:${PROD_DB_PORT}/${PROD_DB_NAME}
+    username: ${PROD_DB_USERNAME}
+    password: ${PROD_DB_PASSWORD}
   jpa:
     hibernate:
       ddl-auto: create-drop

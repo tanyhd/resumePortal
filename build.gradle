@@ -39,5 +39,14 @@ tasks.named('test') {
 }
 
 jar {
+	manifest {
+		attributes(
+				'Class-Path': configurations.runtimeClasspath.files.collect { it.getName() }.join(' '),
+				'Main-Class': 'myapp.resume.portal.ResumePortalApplication'
+		)
+	}
+}
+
+jar {
 	enabled false
 }
